@@ -1,28 +1,352 @@
-body{
+/* Import Google Fonts for a clean font family pairing */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 
-background-image: white;
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-height:100vh;
-
-font-family:Georgia;
-
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.card{
+body {
+    min-height: 100vh;
+    background-color: #ffffff; /* Matches the dark background padding from your image layout */
+    
+    /* Set your exact Canva graphic as the background layer */
+    background-image: url('assets/background.gif'); 
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
 
-width:500px;
+/* The Invisible UI Wrapper */
+.card {
+    width: 100%;
+    /* These boundary rules keep your inputs inside the blank center area of your card design */
+    max-width: 320px; 
+    padding: 10px;
+    text-align: center;
+    background: transparent; /* Keep it invisible to show your Canva card, butterfly, and flowers */
+    border: none;
+    box-shadow: none;
+    
+    /* Slightly shifts the position down so it sits under the gold header text */
+    margin-top: 40px; 
+}
 
-padding:30px;
+/* Styled text adjustments inside your screens */
+#screen h2 {
+    color: #5d534a; /* Elegant earthy grey/brown hue to match your layout accent */
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    letter-spacing: -0.3px;
+}
 
-border-radius:20px;
+/* --- COMPREHENSIVE CLIPPING FIX FOR SCREEN --- */
+#screen {
+    width: 100%;
+    height: 380px;                     /* Keeps it tightly within your canvas area */
+    overflow-y: auto;                  /* Vertical scrolling */
+    -webkit-overflow-scrolling: touch;  /* Smooth mobile swiping */
+    padding: 0 12px;                   /* Clean side margins */
+    box-sizing: border-box;
+    position: relative;
+}
 
-background:white;
+/* New inner wrapper that handles flexible centering without browser bugs */
+.screen-content {
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;           /* Centers short lists perfectly */
+    align-items: center;
+    padding: 15px 0;                   /* Safety padding at top and bottom */
+    box-sizing: border-box;
+}
 
+/* If content overflows the 380px container, switch alignment to avoid top-clipping */
+#screen:has(.screen-content) {
+    display: block; 
+}
+
+
+#screen p {
+    color: #6b6b6b;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+/* Elegant Pill-Shaped Text Inputs */
+#screen input[type="text"], #screen input:not([type="radio"]) {
+    width: 100%;
+    padding: 12px 18px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 30px; /* Gives a smooth rounded appearance matching the card frame */
+    background: #ffffff;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    text-align: center;
+    color: #333333;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#screen input[type="text"]:focus {
+    border-color: #dfb15b; /* Soft gold/yellow accent border focus */
+}
+
+/* Elegant Muted Pastel Green Buttons */
+#screen button {
+    width: 100%;
+    padding: 14px;
+    margin: 6px 0;
+    background: #f4eabb; /* Smooth earthy sage green matching the floral foliage */
+    color: #4d4154;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(155, 179, 147, 0.3);
+}
+
+#screen button:hover {
+    background: #f0e8a9;
+    transform: translateY(-0.5px);
+}
+
+/* Secondary Button Customization (e.g., 'Can't Make It' or 'Try Again') */
+#screen button:nth-of-type(2) {
+    background: #c1e3f8; /* Soft pastel pink tint matching the blossoms */
+    color: #4d4154;
+    box-shadow: 0 3px 10px rgba(238, 216, 211, 0.3);
+}
+
+#screen button:nth-of-type(2):hover {
+    background: #f5b9ed;
+}
+
+/* Radio Option Packaging */
+#screen label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #4a4a4a;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+#screen input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #9bb393;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 15px 0;
+}
+
+/* =======================================================
+   ADD ONLY: Paste this at the very bottom of your style.css
+   ======================================================= */
+
+/* Style the text label wrapping each name option */
+#screen label {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    margin: 12px 0;
+    background: rgba(255, 255, 255, 0.85); /* Clean bright surface */
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 30px; /* Perfectly round pill-style matching your inputs */
+    font-size: 15px;
+    color: #4a4a4a;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+/* HIDES THE BULLET/CIRCLE */
+#screen label input[type="radio"] {
+    display: none !important;
+}
+
+/* Hover State: Changes color when a guest moves their mouse over it */
+#screen label:hover {
+    background: #fdd7f2; /* Soft dusty pink blossom tint */
+    color: #4d4154;
+    border-color: rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px); /* Delicate lift effect */
+}
+
+/* Selected State: Triggers immediately when a name tile is active */
+#screen label:has(input[type="radio"]:checked) {
+    background: #fdd7f2 !important; /* Sage green background when active */
+    color: #504457 !important;      /* White contrast text */
+    border-color: #9bb393 !important;
+    box-shadow: 0 4px 12px rgba(155, 179, 147, 0.3);
+}
+
+/* =======================================================
+   ADD TO THE BOTTOM OF YOUR STYLE.CSS FILE
+   ======================================================= */
+
+/* Premium styling for summary layout info cards */
+.confirm-profile-box {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    padding: 18px;
+    margin: 15px 0 20px 0;
+    border: 1px dashed rgba(0, 0, 0, 0.08);
+    text-align: left; /* Changes text back to left-aligned for clear readability */
+}
+
+/* Base line-item adjustments */
+.confirm-profile-box p {
+    font-size: 14px;
+    color: #4a4a4a;
+    margin-bottom: 8px !important;
+}
+
+.confirm-profile-box p:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Styled wrapper to hold companion list cleanly */
+.companion-badge-list {
+    list-style: none !important; /* Safely strips away the ugly raw bullet dots */
+    padding: 0 !important;
+    margin: 8px 0 0 0 !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Creates elegant modern pill padding spaces */
+}
+
+/* Turns each companion name into a delicate soft white pill badge */
+.companion-badge-list li {
+    background: #ffffff;
+    color: #5d534a !important;
+    font-size: 13px !important;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+
+/* Premium wrapper for the final list screen */
+.final-summary-box {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    padding: 18px;
+    margin: 15px 0 25px 0;
+    border: 1px dashed rgba(0, 0, 0, 0.08);
+    text-align: left; /* Aligns data professionally */
+}
+
+.final-summary-box p {
+    font-size: 14px;
+    color: #4a4a4a;
+    margin-bottom: 8px !important;
+}
+
+.final-summary-box p:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Removes the harsh horizontal rule completely */
+#screen hr {
+    display: none !important;
+}
+
+
+/* Targets the scrollbar track area to keep it invisible */
+#screen::-webkit-scrollbar {
+    width: 4px;                        /* Makes the scrollbar very thin */
+    background: transparent;           /* Keeps the track invisible over your background */
+}
+
+/* Targets the moving scrollbar handle */
+#screen::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);   /* Very soft, semi-transparent grey accent */
+    border-radius: 10px;               /* Smoothly rounded edges */
+}
+
+/* Subtle hover effect when scrolling */
+#screen::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* HIDES SCROLLBAR COMPLETELY FOR FIREFOX AND IE/EDGE */
+#screen {
+    -ms-overflow-style: none;      
+    scrollbar-width: none;         
+}
+
+/* =======================================================
+   LOADING SCREEN STYLES
+   ======================================================= */
+
+/* Container centering the loader perfectly in your fixed screen space */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Elegant spinning ring matching your sage green theme */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(155, 179, 147, 0.2); /* Muted track background */
+    border-top: 3px solid #f58332;             /* Active sage green indicator */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+/* Soft text treatment */
+.loader-container p {
+    color: #6b6b6b;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 !important;
+    letter-spacing: 0.5px;
+}
+
+/* Animations */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
