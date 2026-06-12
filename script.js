@@ -372,17 +372,24 @@ function confirmAttendanceChoice() {
 
 
 function showAttendanceQuestion() {
+  // Check if the guest has only 1 seat reserved (attending solo)
+  const isSolo = parseInt(window.currentGuest.seats || 1) === 1;
+  
+  // Conditionally set the text labels based on the guest count
+  const yesText = isSolo ? "Yes, I Will Attend" : "Yes, We Will Attend";
+  const noText = isSolo ? "Sorry, I Can't Make It" : "Sorry, We Can't Make It";
+
   // Wrap this screen as well to keep layout alignment matching perfectly
   let html = `
     <div class="screen-content">
       <h2>Will you attend<br>Anaiah's Onederful Day?</h2>
 
       <button onclick="finalAttendance('YES')">
-        Yes, We Will Attend
+        ${yesText}
       </button>
 
       <button onclick="finalAttendance('NO')">
-        Sorry, We Can't Make It
+        ${noText}
       </button>
     </div>
   `;
