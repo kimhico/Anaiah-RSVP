@@ -48,7 +48,7 @@ body {
     letter-spacing: -0.3px;
 }
 
-/* --- COMPREHENSIVE CLIPPING FIX FOR SCREEN --- */
+
 /* --- COMPREHENSIVE CLIPPING FIX FOR SCREEN --- */
 #screen {
     width: 100%;
@@ -291,27 +291,34 @@ hr {
 }
 
 
-/* Targets the scrollbar track area to keep it invisible */
+/* =======================================================
+   SLIGHTLY TRANSPARENT VISIBLE SCROLLBAR
+   ======================================================= */
+
+/* 1. Enable the scrollbar track explicitly for WebKit browsers */
 #screen::-webkit-scrollbar {
-    width: 4px;                        /* Makes the scrollbar very thin */
-    background: transparent;           /* Keeps the track invisible over your background */
+    width: 6px;                        /* Slightly wider so it's comfortably visible */
+    background: rgba(0, 0, 0, 0.02);    /* Very faintly tinted background track */
+    display: block !important;          /* Overrides any previous hidden states */
 }
 
-/* Targets the moving scrollbar handle */
+/* 2. The draggable scrollbar handle (Slightly Transparent) */
 #screen::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);   /* Very soft, semi-transparent grey accent */
-    border-radius: 10px;               /* Smoothly rounded edges */
+    background: rgba(93, 83, 74, 0.3);  /* Uses your elegant #5d534a accent color at 30% opacity */
+    border-radius: 10px;                /* Smooth pill shape edges */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Crisp, semi-clear boundary line */
 }
 
-/* Subtle hover effect when scrolling */
+/* 3. Interactive hover state when a guest holds/hovers over it */
 #screen::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(93, 83, 74, 0.5);  /* Darkens to 50% opacity for clear user feedback */
 }
 
-/* HIDES SCROLLBAR COMPLETELY FOR FIREFOX AND IE/EDGE */
+/* 4. REVERSE FORCED HIDING FOR OTHER BROWSERS */
 #screen {
-    -ms-overflow-style: none;      
-    scrollbar-width: none;         
+    -ms-overflow-style: auto !important;  /* Restores default tracking for IE/Edge */
+    scrollbar-width: thin !important;     /* Changes to a clean, thin line for Firefox */
+    scrollbar-color: rgba(93, 83, 74, 0.3) rgba(0, 0, 0, 0.02) !important; /* Firefox Color Mapping */
 }
 
 /* =======================================================
@@ -328,7 +335,7 @@ hr {
     align-items: center;
     
     /* ADD THIS: Gives it a tiny bit of breathing room from the header text without pushing it down too far */
-    padding-top: 30px; 
+    padding-top: 10px; 
     
     height: 100%;
     width: 100%;
@@ -369,9 +376,36 @@ hr {
 
 .search-form-wrapper {
     width: 100%;
-    padding-top: 60px !important; /* Decreased from 135px to lift the initial search view higher */
+    padding-top: 10px !important; /* Decreased from 135px to lift the initial search view higher */
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
+}
+
+/* =======================================================
+   BACK LINK NAVIGATION STYLES
+   ======================================================= */
+#screen .back-btn {
+    background: transparent !important;
+    color: #8a7a6e !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 11px !important;
+    text-transform: uppercase;
+    font-weight: 600 !important;
+    letter-spacing: 1.2px;
+    margin-top: 14px !important;
+    padding: 6px 0 !important;
+    width: auto !important;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: all 0.2s ease;
+}
+
+#screen .back-btn:hover {
+    opacity: 1;
+    color: #4d4154 !important;
+    transform: none !important;
+    background: transparent !important;
 }
